@@ -1,56 +1,111 @@
-import React from 'react'
-import { Link } from "react-router-dom";
-import hero_image from "../images/coverImage4.jpg"
-import aboutImage from "../images/coverImage2.jpg"
-import Image1 from "../images/coverImage1.jpg"
-import Image2 from "../images/coverImage3.jpg"
-import { Button } from "../components/ui/button"
-import Slider from './imageSlider'
-import { ArrowUp } from 'lucide-react';
+import { Button } from '../components/ui/button';
+import { ArrowLeft, ArrowUp } from 'lucide-react';
+import hero_image from '../images/coverImage4.jpg'
+import cover1 from '../images/coverImage1.jpg'
+import cover2 from '../images/coverImage2.jpg'
+import cover3 from '../images/coverImage3.jpg'
+import cover4 from '../images/cover3.jpg'
+import hero_image1 from '../images/mobImg.jpg'
 const Heropage = () => {
   return (
-    <div classname="">
-      <img src={hero_image} alt="Hero Image" id='/'/>
-      <div className='absolute top-[12rem] left-[5%] w-[40%]'>
-        <h1 className='text-white font-bold text-[45px]'>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, error!
-        </h1>
-        <Button className="w-[20%] font-bold text-[17px] mt-2 ms-2 bg-[#060270] hover:bg-[#13005A]">
-          <Link to='/admission'>
-          Apply Now
-          </Link>
-        </Button>
+    <div>
+      {/* Hero Section with Image and apply button */}
+      <div className='relative'>
+      <img src={hero_image} alt="Hero Image" className="w-full h-[300px] md:h-auto object-cover lg:block md:hidden" />
+      <img src={hero_image1} alt="Hero Image" className="lg:hidden" />
+              <div className='absolute lg:top-1/4 lg:w-1/2 md:1/4 md:top-1/2 text-white md:text-center md:text-[3rem] bg-black bg-opacity-40 rounded-lg hover:shadow-xl'>
+                <h2>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, deleniti.
+                </h2>
+                {/* apply button */}
+                <Button className="bg-blue-800 m-4 hover:bg-blue-700 text-white w-1/4 md:text-[2rem] md:p-3">Apply Now</Button>
+              </div>
       </div>
-      <div className=' mt-[9%] w-70% '>
-        <h2 className='font-bold ms-[60px] text-[45px] text-[#03004E] '>
-          Why NewLeaf ?
-        </h2>
-        <div className='m-[7%] mx-auto flex items-center flex-row-reverse gap-[40px] w-[60rem]'>
-          <p className='w-70% text-[23px]'>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum maxime reiciendis consequatur culpa dolorem harum ipsum? Reiciendis a asperiores consequatur sequi voluptas ipsa inventore exercitationem excepturi, pariatur, sapiente molestiae ad.
-          </p>
-          <img src={aboutImage} alt="AboutImage" width="250px" className='rounded-md' />
+      <div className='w-full bg-gray-200 mt-20'>
+      <div className="container mx-auto py-8 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8 lg:text-[1rem] md:text-[3rem]">
+      <h3 className="text-blue-800 bg-gray-300 rounded-lg inline-block p-5 font-bold">About Newleaf</h3>
+        <div className="p-4 bg-white shadow-lg rounded-lg text-center flex flex-col items-center">
+          <img src={cover1} alt="Example" className="w-32 h-32 md:h-full md:w-3/4 mx-auto lg:rounded-md mb-4" />
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, deleniti.</p>
         </div>
-        <div className='m-[7%] mx-auto flex items-center gap-[40px] w-[60rem]'>
-          <p className='w-70% text-[23px]'>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum maxime reiciendis consequatur culpa dolorem harum ipsum? Reiciendis a asperiores consequatur sequi voluptas ipsa inventore exercitationem excepturi, pariatur, sapiente molestiae ad.
-          </p>
-          <img src={Image1} alt="AboutImage" width="250px" className='rounded-md' />
+       <div className='bg-gray-200 p-10'>
+       <h3 className='mb-5 text-blue-800'>
+        About Newleaf <ArrowLeft className="inline-block" />
+        </h3>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione facilis tenetur voluptatibus repudiandae dolore facere neque consectetur quisquam at magnam!
+        </p>
+       </div>
+        <h3 className="text-blue-800 bg-gray-300 rounded-lg inline-block p-5 font-bold">Visionaries</h3>
+        <div className="p-4 bg-white shadow-lg rounded-lg text-center flex flex-col items-center">
+          <img src={cover2} alt="Example" className="w-32 h-32 md:h-full md:w-3/4 mx-auto lg:rounded-md mb-4" />
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, deleniti.</p>
         </div>
-        <div className='m-[7%] mx-auto flex items-center flex-row-reverse gap-[40px] w-[60rem]'>
-          <p className='w-70% text-[23px]'>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum maxime reiciendis consequatur culpa dolorem harum ipsum? Reiciendis a asperiores consequatur sequi voluptas ipsa inventore exercitationem excepturi, pariatur, sapiente molestiae ad.
-          </p>
-          <img src={Image2} alt="AboutImage" width="250px" className='rounded-md' />
+        <div className='bg-gray-200 p-10'>
+       <h3 className='mb-5 text-blue-800'>
+        About Newleaf <ArrowLeft className="inline-block" />
+        </h3>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione facilis tenetur voluptatibus repudiandae dolore facere neque consectetur quisquam at magnam!
+        </p>
+       </div>
+        <h3 className="text-blue-800 bg-gray-300 rounded-lg inline-block p-5 font-bold">Why Newleaf</h3>
+        <div className="p-4 bg-white shadow-lg rounded-lg text-center flex flex-col items-center">
+          <img src={cover3} alt="Example" className="w-32 h-32 md:h-full md:w-3/4 mx-auto lg:rounded-md mb-4" />
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, deleniti.</p>
         </div>
-        {/* //Our Campus */}
-        <Slider/>
+        <div className='bg-gray-200 p-10'>
+       <h3 className='mb-5 text-blue-800'>
+        About Newleaf <ArrowLeft className="inline-block" />
+        </h3>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione facilis tenetur voluptatibus repudiandae dolore facere neque consectetur quisquam at magnam!
+        </p>
+       </div>
+        <h3 className="text-blue-800 bg-gray-300 rounded-lg inline-block p-5 font-bold">Curriculum</h3>
+        <div className="p-4 bg-white shadow-lg rounded-lg text-center flex  md:flex-col items-center">
+          <img src={cover4} alt="Example" className="w-32 h-32 md:h-full md:w-3/4 mx-auto lg:rounded-md mb-4" />
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, deleniti.</p>
+        </div>
+        <div className='bg-gray-200 p-10'>
+       <h3 className='mb-5 text-blue-800'>
+        About Newleaf <ArrowLeft className="inline-block" />
+        </h3>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione facilis tenetur voluptatibus repudiandae dolore facere neque consectetur quisquam at magnam!
+        </p>
+       </div>
+        <h3 className="text-blue-800 bg-gray-300 rounded-lg inline-block p-5 font-bold">Our Campus</h3>
+        <div className="p-4 bg-white shadow-lgrounded-lg text-center flex flex-col items-center">
+          <img src={cover4} alt="Example" className="w-32 h-32 md:h-full md:w-3/4 mx-auto lg:rounded-md mb-4" />
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, deleniti.</p>
+        </div>
+        <div className='bg-gray-200 p-10'>
+       <h3 className='mb-5 text-blue-800'>
+        About Newleaf <ArrowLeft className="inline-block" />
+        </h3>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione facilis tenetur voluptatibus repudiandae dolore facere neque consectetur quisquam at magnam!
+        </p>
+       </div>
+        <h3 className="text-blue-800 bg-gray-300 rounded-lg inline-block p-5 font-bold">Sports Day</h3>
+        <div className="p-4 bg-white shadow-lg rounded-lg text-center flex flex-col items-center">
+          <img src={cover4} alt="Example" className="w-32 h-32 md:h-full md:w-3/4 mx-auto lg:rounded-md mb-4" />
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, deleniti.</p>
+        </div>
+        <div className='bg-gray-200 p-10'>
+       <h3 className='mb-5 text-blue-800'>
+        About Newleaf <ArrowLeft className="inline-block" />
+        </h3>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione facilis tenetur voluptatibus repudiandae dolore facere neque consectetur quisquam at magnam!
+        </p>
+       </div>
       </div>
-    <Button className="absolute right-5 bottom-[-113.5rem] bg-blue-900">
-      <a href='#/'><ArrowUp/></a>
-    </Button>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default Heropage;
+
