@@ -3,7 +3,6 @@ import React from 'react';
 const AdmissionPage = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Handle form submission logic here
     };
 
     return (
