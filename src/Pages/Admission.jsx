@@ -7,8 +7,8 @@ const AdmissionPage = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-8">
-            <h1 className="text-3xl font-semibold text-center mb-8">Online registration form for admission</h1>
+        <div className="max-w-4xl mx-auto px-4 py-8 lg:text-[1.5rem] md:text-[3rem]">
+            <h1 className="lg:text-[1.5rem] md:text-[4rem] font-semibold text-center mb-8">Online registration form for admission</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                     <label htmlFor="grade">Grade for which admission is sought *</label>

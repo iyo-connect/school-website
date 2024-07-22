@@ -1,84 +1,64 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu } from 'lucide-react';
-import logo from '../images/logo1.png';
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger
-} from "../components/ui/sheet";
-
-const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'Curriculum', path: '/curriculum' },
-  { name: 'Contact Us', path: '/contact' },
-  { name: 'About Us', path: '/about-us' },
-  { name: 'Academics', path: '/academics' },
-  { name: 'Admissions', path: '/admission' }
-];
+import { Menu, X } from 'lucide-react';
+import logo from '../images/logo3.png';
 
 export default function Navbar() {
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleLinkClick = () => {
+    setMenuOpen(false); // Close the menu when a link is clicked
+  };
 
   return (
-    <nav className="sticky top-0 h-[80px] flex items-center text-[18px] shadow-lg bg-gray/50 backdrop-blur-lg">
-      <div className="container mx-auto flex justify-between items-center px-[15rem] ">
-        <div className="hidden md:flex space-x-4">
-          <ul className="flex space-x-4">
-            {navLinks.slice(0, 3).map((link) => (
-              <li key={link.name}>
-                <Link to={link.path} className="text-black hover:text-blue-500">
-                  {link.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
+    <>
+      <nav className="bg-gray-200 w-full lg:max-h-[105px] flex lg:justify-center md:justify-between md:items-center p-8 shadow-lg">
+        <div className="hidden lg:flex justify-evenly items-center gap-10">
+          <NavbarComponent text="Home" path="/" isMobile={false} onClick={handleLinkClick} />
+          <NavbarComponent text="Academic" path="/academics" isMobile={false} onClick={handleLinkClick} />
+          <NavbarComponent text="Curriculum" path="/curriculum" isMobile={false} onClick={handleLinkClick} />
+          <img src={logo} alt="logo" className="w-[10rem] md:w-[20rem] lg:w-[6rem] lg:mb-3" />
+          <NavbarComponent text="About" path="/about-us" isMobile={false} onClick={handleLinkClick} />
+          <NavbarComponent text="Contact" path="/contact" isMobile={false} onClick={handleLinkClick} />
+          <NavbarComponent text="Admission" path="/admission" isMobile={false} onClick={handleLinkClick} />
         </div>
-
-        <div className="">
-          <img src={logo} alt="No-Image" width="300px" />
+        <div className=" lg:hidden flex items-center justify-between w-full">
+          <img src={logo} alt="logo" className="w-[10rem] md:w-[20rem]" />
+          <button onClick={toggleMenu} className="text-black">
+            {menuOpen ? <X className="md:size-[5rem]" /> : <Menu className="md:size-[5rem]" />}
+          </button>
         </div>
-
-        <div className="hidden md:flex space-x-4">
-          <ul className="flex space-x-4">
-            {navLinks.slice(3).map((link) => (
-              <li key={link.name}>
-                <Link to={link.path} className="text-black hover:text-blue-500">
-                  {link.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
+      </nav>
+      {menuOpen && (
+        <div className="lg:hidden bg-gray-200 text-center py-4 rounded-[30px]">
+          <NavbarComponent text="Home" path="/" isMobile={true} onClick={handleLinkClick} />
+          <NavbarComponent text="Academic" path="/academics" isMobile={true} onClick={handleLinkClick} />
+          <NavbarComponent text="Curriculum" path="/curriculum" isMobile={true} onClick={handleLinkClick} />
+          <NavbarComponent text="About" path="/about-us" isMobile={true} onClick={handleLinkClick} />
+          <NavbarComponent text="Contact" path="/contact" isMobile={true} onClick={handleLinkClick} />
+          <NavbarComponent text="Admission" path="/admission" isMobile={true} onClick={handleLinkClick} />
         </div>
-
-        <div className="md:hidden">
-          <Sheet>
-            <SheetTrigger>
-              <button onClick={() => setMobileMenuOpen(!isMobileMenuOpen)} className="text-black">
-                <Menu size='25'/>
-              </button>
-            </SheetTrigger>
-            <SheetContent>
-              <SheetHeader>
-                <SheetTitle>Menu</SheetTitle>
-                <SheetDescription>Select a page to navigate</SheetDescription>
-              </SheetHeader>
-              <div className="space-y-4">
-                {navLinks.map((link) => (
-                  <div key={link.name}>
-                    <Link to={link.path} className="text-black hover:text-blue-500 block py-2">
-                      {link.name}
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </div>
-    </nav>
+      )}
+    </>
+  );
+}
+    // Resuable function 
+function NavbarComponent({ text, path, isMobile, onClick }) {
+  return (
+    <Link
+      to={path}
+      className={
+        isMobile
+          ? "block text-black text-[4rem] py-2 px-4 hover:border-b-2 border-blue-500 rounded-md"
+          : "hidden lg:block lg:text-[17px] hover:border-b-2 border-blue-500 md:space-y-4"
+      }
+      onClick={onClick} // Add onClick handler here
+    >
+      {text}
+    </Link>
   );
 }

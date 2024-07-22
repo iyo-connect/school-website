@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 const CurriculumPage = () => {
   return (
     <>
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-gray-100 ">
         <div className="container mx-auto py-8 px-4">
           {/* Curriculum Content Section */}
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-            <h2 className="text-3xl font-bold mb-4">Our Curriculum</h2>
+          <div className="bg-white rounded-lg shadow-lg p-8 mb-8 lg:text-[1.5rem] md:text-[3rem]">
+            <h2 className="lg:text-3xl font-bold mb-4">Our Curriculum</h2>
             <p className="mb-4">
               At NewLeaf School, we offer a comprehensive curriculum designed to foster
               intellectual, emotional, and social growth in our students.
@@ -38,8 +38,8 @@ const CurriculumPage = () => {
           </div>
 
           {/* Related Links Section */}
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h3 className="text-xl font-bold mb-4">Related Links</h3>
+          <div className="bg-white rounded-lg shadow-lg p-8 lg:text-[1.5rem] md:text-[3rem]">
+            <h3 className=" font-bold mb-4lg:text-[1.5rem] md:text-[3rem]">Related Links</h3>
             <ul>
               <li><Link to="#" className="block hover:underline mb-2">Admissions</Link></li>
               <li><Link to="#" className="block hover:underline mb-2">School Calendar</Link></li>

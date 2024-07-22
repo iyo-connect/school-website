@@ -1,90 +1,192 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import contactImage from '../images/contactPage.jpeg';
+import { FormField, FormSelect, FormRadioGroup, FormTextarea, FormFileUpload, FormButton } from '../componentPage/FormComponents';
 
-const ContactPage = () => {
-  return (
-    <>
-      <div className="min-h-screen bg-gray-100 flex flex-col items-center">
-        <div className="container mx-auto py-8 px-4">
-          {/* Enquiry Form Section */}
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-            <div className="mb-8">
-              <h2 className="text-3xl font-bold mb-4">Enquiry Form</h2>
-              <img src={contactImage} alt="Enquiry Form" className="w-full h-[370px] object-cover rounded-lg mb-4" />
-            </div>
-            <form>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="block text-sm font-bold mb-2" htmlFor="name">Name: *</label>
-                  <input className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" type="text" id="name" name="name" placeholder="Name" required />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold mb-2" htmlFor="email">Email: *</label>
-                  <input className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" type="email" id="email" name="email" placeholder="Email" required />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold mb-2" htmlFor="contactNumber">Contact Number: *</label>
-                  <input className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" type="text" id="contactNumber" name="contactNumber" placeholder="Contact Number" required />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold mb-2" htmlFor="enquiry">Enquiry: *</label>
-                  <input className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" type="text" id="enquiry" name="enquiry" placeholder="Enquiry" required />
-                </div>
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-bold mb-2" htmlFor="message">Message: *</label>
-                <textarea className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="message" name="message" rows="4" placeholder="Message" required></textarea>
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-bold mb-2" htmlFor="captcha">Please enter the code you see in the image: *</label>
-                <input className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" type="text" id="captcha" name="captcha" required />
-              </div>
-              <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Submit Details</button>
+const AdmissionPage = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // Handle form submission logic here
+    };
+
+    return (
+        <div className="md:text-[3rem] max-w-4xl mx-auto px-4 py-8 md:px-6 lg:px-8">
+            <h1 className="text-[10rem] font-semibold text-center mb-8">Online Registration Form for Admission</h1>
+            <form onSubmit={handleSubmit} className="space-y-6">
+                <FormSelect
+                    label="Grade for which admission is sought"
+                    id="grade"
+                    options={[
+                        { value: 'Grade 1', label: 'Grade 1' },
+                        // Add other grade options as needed
+                    ]}
+                    required
+                />
+                <FormField
+                    label="Name of the student"
+                    id="student-name"
+                    placeholder="Name of the student"
+                    required
+                />
+                <FormField
+                    label="Date of birth (as per Birth Certificate)"
+                    id="dob"
+                    type="date"
+                    required
+                />
+                <FormRadioGroup
+                    name="sex"
+                    options={[
+                        { value: 'Male', label: 'Male' },
+                        { value: 'Female', label: 'Female' },
+                        { value: 'Others', label: 'Others' },
+                    ]}
+                    required
+                />
+                <FormField
+                    label="Nationality"
+                    id="nationality"
+                    placeholder="Nationality"
+                    required
+                />
+                <FormField
+                    label="Religion"
+                    id="religion"
+                    placeholder="Religion"
+                    required
+                />
+                <FormField
+                    label="Caste"
+                    id="caste"
+                    placeholder="Caste"
+                    required
+                />
+                <FormSelect
+                    label="Community"
+                    id="community"
+                    options={[
+                        { value: 'OC', label: 'OC' },
+                        { value: 'BC', label: 'BC' },
+                        { value: 'MBC', label: 'MBC' },
+                        { value: 'SC', label: 'SC' },
+                        { value: 'ST', label: 'ST' },
+                    ]}
+                    required
+                />
+                <h2 className="text-2xl md:text-[2rem] font-semibold mb-4">Father's Details</h2>
+                <FormField
+                    label="Father’s Name"
+                    id="father-name"
+                    placeholder="Father’s Name"
+                    required
+                />
+                <FormField
+                    label="Educational Qualification"
+                    id="father-qualification"
+                    placeholder="Educational Qualification"
+                    required
+                />
+                <FormField
+                    label="Mobile Number"
+                    id="father-mobile"
+                    type="tel"
+                    placeholder="Mobile Number"
+                    required
+                />
+                <FormField
+                    label="Occupation"
+                    id="father-occupation"
+                    placeholder="Occupation"
+                    required
+                />
+                <FormField
+                    label="Annual Income"
+                    id="father-income"
+                    placeholder="Annual Income"
+                    required
+                />
+                <h2 className="text-2xl md:text-[2rem] font-semibold mb-4">Mother's Details</h2>
+                <FormField
+                    label="Mother’s Name"
+                    id="mother-name"
+                    placeholder="Mother’s Name"
+                    required
+                />
+                <FormField
+                    label="Educational Qualification"
+                    id="mother-qualification"
+                    placeholder="Educational Qualification"
+                    required
+                />
+                <FormField
+                    label="Mobile Number"
+                    id="mother-mobile"
+                    type="tel"
+                    placeholder="Mobile Number"
+                    required
+                />
+                <FormField
+                    label="Occupation"
+                    id="mother-occupation"
+                    placeholder="Occupation"
+                    required
+                />
+                <FormField
+                    label="Annual Income"
+                    id="mother-income"
+                    placeholder="Annual Income"
+                    required
+                />
+                <FormField
+                    label="Name of the current school"
+                    id="current-school"
+                    placeholder="Name of the current school"
+                    required
+                />
+                <FormSelect
+                    label="Board of Education"
+                    id="board"
+                    options={[
+                        { value: 'CBSE', label: 'CBSE' },
+                        { value: 'ICSE', label: 'ICSE' },
+                        { value: 'State Board', label: 'State Board' },
+                    ]}
+                    required
+                />
+                <FormField
+                    label="Email id for communication"
+                    id="email"
+                    type="email"
+                    placeholder="Email id for communication"
+                    required
+                />
+                <FormTextarea
+                    label="Residential address for communication"
+                    id="address"
+                    placeholder="Residential address for communication"
+                    required
+                />
+                <FormRadioGroup
+                    name="siblings"
+                    options={[
+                        { value: 'Yes', label: 'Yes' },
+                        { value: 'No', label: 'No' },
+                    ]}
+                    required
+                />
+                <FormFileUpload
+                    label="Upload recent passport photograph of the student"
+                    id="photo"
+                    accept="image/png, image/jpeg, application/pdf"
+                />
+                <FormField
+                    label="Please enter the code you see in the image"
+                    id="captcha"
+                    placeholder="Enter code"
+                    required
+                />
+                <FormButton text="Submit" />
             </form>
-          </div>
-
-          {/* Side Section */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg shadow-lg p-8">
-              <h3 className="text-xl font-bold mb-4">Annual Events</h3>
-              <ul>
-                <li><Link to="#" className="block hover:underline mb-2">Presentation of Colours</Link></li>
-                <li><Link to="#" className="block hover:underline mb-2">Independence Day</Link></li>
-                <li><Link to="#" className="block hover:underline mb-2">Bharathi Darshan</Link></li>
-                <li><Link to="#" className="block hover:underline mb-2">School Activities</Link></li>
-              </ul>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg p-8">
-              <h3 className="text-xl font-bold mb-4">About NewLeaf</h3>
-              <p>NewLeaf School is inspired by the vision and principles of modern education, focusing on the holistic development of students. We aim to nurture independent thinkers and lifelong learners who can contribute positively to society.</p>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg p-8">
-              <h3 className="text-xl font-bold mb-4">Other Events</h3>
-              <ul>
-                <li><Link to="#" className="block hover:underline mb-2">Independence Day</Link></li>
-                <li><Link to="#" className="block hover:underline mb-2">Bharathi Darshan</Link></li>
-                <li><Link to="#" className="block hover:underline mb-2">School Activities</Link></li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Map Section Placeholder */}
-          <div className="mt-8 w-full">
-            <div className="bg-white rounded-lg shadow-lg p-8">
-              <h3 className="text-xl font-bold mb-4">Our Location</h3>
-              <p>NewLeaf School</p>
-              <p>307, Thadagam Main Rd, Saibaba Colony, Coimbatore, Tamil Nadu 641011</p>
-              <p>Phone: +91 422 3515720</p>
-              <p>Email: info@newleafschool.org</p>
-              <p>Map:</p>
-              <img src="/path/to/map-placeholder.jpg" alt="Map placeholder" className="w-full h-64 object-cover rounded-lg" />
-            </div>
-          </div>
         </div>
-      </div>
-    </>
-  );
+    );
 };
 
-export default ContactPage;
+export default AdmissionPage;
