@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import Dashboard from './Pages/admin/Dashboard';
 import ContactPage from './Pages/ContactPage';
 import AboutPage from './Pages/AboutUs';
@@ -13,7 +13,7 @@ import Heropage from './componentPage/Heropage';
 
 function App() {
   return (
-    <Router>
+    <HashRouter>
       <>
       <Navbar />
         <Routes>
@@ -28,7 +28,7 @@ function App() {
         </Routes>
         <Footer />
       </>
-    </Router>
+    </HashRouter>
   );
 }
 
