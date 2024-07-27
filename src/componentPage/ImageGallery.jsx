@@ -3,7 +3,6 @@ import image1 from "../images/coverImage3.jpg";
 import image2 from "../images/coverImage1.jpg";
 import image3 from "../images/coverImage2.jpg";
 import image4 from "../images/cover3.jpg";
-import image5 from "../images/heroImage.jpeg";
 
 const images = [
   { src: image1, alt: 'Cover Image 3' },

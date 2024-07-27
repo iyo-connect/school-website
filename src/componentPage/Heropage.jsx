@@ -1,5 +1,5 @@
 import { Button } from '../components/ui/button';
-import { ArrowLeft, ArrowUp } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import hero_image from '../images/coverImage4.jpg'
 import cover1 from '../images/coverImage1.jpg'
 import cover2 from '../images/coverImage2.jpg'

@@ -25,6 +25,7 @@ export default function Navbar() {
           <NavbarComponent text="About" path="/about-us" isMobile={false} onClick={handleLinkClick} />
           <NavbarComponent text="Contact" path="/contact" isMobile={false} onClick={handleLinkClick} />
           <NavbarComponent text="Admission" path="/admission" isMobile={false} onClick={handleLinkClick} />
+          <NavbarComponent text="Student Portal" path="/student" isMobile={false} onClick={handleLinkClick} />
         </div>
         <div className=" lg:hidden flex items-center justify-between w-full">
           <img src={logo} alt="logo" className="w-[10rem] md:w-[20rem]" />
@@ -41,6 +42,7 @@ export default function Navbar() {
           <NavbarComponent text="About" path="/about-us" isMobile={true} onClick={handleLinkClick} />
           <NavbarComponent text="Contact" path="/contact" isMobile={true} onClick={handleLinkClick} />
           <NavbarComponent text="Admission" path="/admission" isMobile={true} onClick={handleLinkClick} />
+          <NavbarComponent text="Student Portal" path="/student" isMobile={true} onClick={handleLinkClick} />
         </div>
       )}
     </>
