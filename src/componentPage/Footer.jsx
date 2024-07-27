@@ -7,7 +7,7 @@ import { Button } from '../components/ui/button';
 const Footer = () => {
   return (
     <>
-      <div className="bg-blue-800 text-white py-12 lg:text-[17px] md:text-[3rem]">
+      <div className="bg-[#7776B3] text-white py-12 lg:text-[17px] md:text-[3rem]">
         <div className="container mx-auto lg:flex lg:gap-[8rem]">
         <img src={icon} alt="logo" className='lg:w-[21rem] lg:h-[8rem] lg:block md:hidden'/>
           <div className="w-full flex md:justify-around md:text-center md:mb-[5rem]">
