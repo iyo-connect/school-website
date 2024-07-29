@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from 'lucide-react';
 import logo from '../images/logo3.png';
+import LanguageSelector from "./LanguageSelector";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,7 +12,7 @@ export default function Navbar() {
   };
 
   const handleLinkClick = () => {
-    setMenuOpen(false); // Close the menu when a link is clicked
+    setMenuOpen(false);
   };
 
   return (
@@ -43,22 +44,23 @@ export default function Navbar() {
           <NavbarComponent text="Contact" path="/contact" isMobile={true} onClick={handleLinkClick} />
           <NavbarComponent text="Admission" path="/admission" isMobile={true} onClick={handleLinkClick} />
           <NavbarComponent text="Student Portal" path="/student" isMobile={true} onClick={handleLinkClick} />
+          <LanguageSelector/>
         </div>
       )}
     </>
   );
 }
-    // Resuable function 
+    
 function NavbarComponent({ text, path, isMobile, onClick }) {
   return (
     <Link
       to={path}
       className={
         isMobile
-          ? "block text-black text-[4rem] py-2 px-4 hover:border-b-2 border-blue-500 rounded-md"
+          ? "block text-[#7776B3] text-[4rem] py-2 px-4 p-[2rem] hover:text-blue-900 active:text-blue-900  rounded-md"
           : "hidden lg:block lg:text-[17px] hover:border-b-2 border-blue-500 md:space-y-4"
       }
-      onClick={onClick} // Add onClick handler here
+      onClick={onClick} 
     >
       {text}
     </Link>
