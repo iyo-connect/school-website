@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import {Routes, Route, useLocation ,HashRouter } from 'react-router-dom';
 import Dashboard from './Pages/admin/Dashboard';
 import ContactPage from './Pages/ContactPage';
 import AboutPage from './Pages/AboutUs';
@@ -11,6 +11,7 @@ import Footer from './componentPage/Footer';
 import Navbar from './componentPage/NavigationMenu';
 import Heropage from './componentPage/Heropage';
 import StudentPortal from './Pages/StudentPortal/StudentPortal';
+import Dummy from './Pages/Dummy';
 
 function App() {
   const location = useLocation();
@@ -18,9 +19,10 @@ function App() {
 
   return (
     <>
+    
       {!isAuthRoute && <Navbar />}
       <Routes>
-        <Route path="/" element={<Heropage />} />
+        <Route path="/" element={<Heropage/>} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/academics" element={<Academics />} />
@@ -30,14 +32,15 @@ function App() {
         <Route path="/student/*" element={<StudentPortal />} />
       </Routes>
       {!isAuthRoute && <Footer />}
+     
     </>
   );
 }
 
 const WrappedApp = () => (
-  <Router>
+  <HashRouter>
     <App />
-  </Router>
+  </HashRouter>
 );
 
 export default WrappedApp;
