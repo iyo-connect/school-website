@@ -1,40 +1,45 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const AdmissionPage = () => {
+    const { t } = useTranslation();
+
     const handleSubmit = (event) => {
         event.preventDefault();
     };
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-8 lg:text-[1.5rem] md:text-[3rem]">
-            <h1 className="lg:text-[1.5rem] md:text-[4rem] font-semibold text-center mb-8">Online registration form for admission</h1>
+        <div className="max-w-4xl mx-auto px-4 py-8 lg:text-[1rem] md:text-[3rem]">
+            <h1 className="lg:text-[1.5rem] md:text-[4rem] font-semibold text-center mb-8">
+                {t('Admission_header')}
+            </h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                    <label htmlFor="grade">Grade for which admission is sought *</label>
+                    <label htmlFor="grade">{t('Grade_label')}</label>
                     <select
                         id="grade"
                         name="grade"
                         className="w-full"
                         required
                     >
-                        <option value="">Select Grade</option>
+                        <option value="">{t('Select_Grade')}</option>
                         <option value="Grade 1">Grade 1</option>
-                        {/* Add other grade options as needed */}
+                        
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="student-name">Name of the student *</label>
+                    <label htmlFor="student-name">{t('Student_Name_label')}</label>
                     <input
                         type="text"
                         id="student-name"
                         name="student-name"
-                        placeholder="Name of the student"
+                        placeholder={t('Student_Name_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="dob">Date of birth (as per Birth Certificate) *</label>
+                    <label htmlFor="dob">{t('DOB_label')}</label>
                     <input
                         type="date"
                         id="dob"
@@ -44,60 +49,60 @@ const AdmissionPage = () => {
                     />
                 </div>
                 <div>
-                    <label>Sex *</label>
+                    <label>{t('Sex_label')}</label>
                     <div>
                         <input type="radio" id="male" name="sex" value="Male" required />
-                        <label htmlFor="male">Male</label>
+                        <label htmlFor="male">{t('Male')}</label>
 
                         <input type="radio" id="female" name="sex" value="Female" />
-                        <label htmlFor="female">Female</label>
+                        <label htmlFor="female">{t('Female')}</label>
 
                         <input type="radio" id="others" name="sex" value="Others" />
-                        <label htmlFor="others">Others</label>
+                        <label htmlFor="others">{t('Others')}</label>
                     </div>
                 </div>
                 <div>
-                    <label htmlFor="nationality">Nationality *</label>
+                    <label htmlFor="nationality">{t('Nationality_label')}</label>
                     <input
                         type="text"
                         id="nationality"
                         name="nationality"
-                        placeholder="Nationality"
+                        placeholder={t('Nationality_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="religion">Religion *</label>
+                    <label htmlFor="religion">{t('Religion_label')}</label>
                     <input
                         type="text"
                         id="religion"
                         name="religion"
-                        placeholder="Religion"
+                        placeholder={t('Religion_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="caste">Caste *</label>
+                    <label htmlFor="caste">{t('Caste_label')}</label>
                     <input
                         type="text"
                         id="caste"
                         name="caste"
-                        placeholder="Caste"
+                        placeholder={t('Caste_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="community">Community *</label>
+                    <label htmlFor="community">{t('Community_label')}</label>
                     <select
                         id="community"
                         name="community"
                         className="w-full"
                         required
                     >
-                        <option value="">Select Community</option>
+                        <option value="">{t('Select_Community')}</option>
                         <option value="OC">OC</option>
                         <option value="BC">BC</option>
                         <option value="MBC">MBC</option>
@@ -105,177 +110,177 @@ const AdmissionPage = () => {
                         <option value="ST">ST</option>
                     </select>
                 </div>
-                <h2>Father's Details</h2>
+                <h2>{t('Fathers_Details')}</h2>
                 <div>
-                    <label htmlFor="father-name">Father’s Name *</label>
+                    <label htmlFor="father-name">{t('Father_Name_label')}</label>
                     <input
                         type="text"
                         id="father-name"
                         name="father-name"
-                        placeholder="Father’s Name"
+                        placeholder={t('Father_Name_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="father-qualification">Educational Qualification *</label>
+                    <label htmlFor="father-qualification">{t('Father_Qualification_label')}</label>
                     <input
                         type="text"
                         id="father-qualification"
                         name="father-qualification"
-                        placeholder="Educational Qualification"
+                        placeholder={t('Father_Qualification_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="father-mobile">Mobile Number *</label>
+                    <label htmlFor="father-mobile">{t('Father_Mobile_label')}</label>
                     <input
                         type="tel"
                         id="father-mobile"
                         name="father-mobile"
-                        placeholder="Mobile Number"
+                        placeholder={t('Father_Mobile_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="father-occupation">Occupation *</label>
+                    <label htmlFor="father-occupation">{t('Father_Occupation_label')}</label>
                     <input
                         type="text"
                         id="father-occupation"
                         name="father-occupation"
-                        placeholder="Occupation"
+                        placeholder={t('Father_Occupation_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="father-income">Annual Income *</label>
+                    <label htmlFor="father-income">{t('Father_Income_label')}</label>
                     <input
                         type="text"
                         id="father-income"
                         name="father-income"
-                        placeholder="Annual Income"
+                        placeholder={t('Father_Income_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
-                <h2>Mother's Details</h2>
+                <h2>{t('Mothers_Details')}</h2>
                 <div>
-                    <label htmlFor="mother-name">Mother’s Name *</label>
+                    <label htmlFor="mother-name">{t('Mother_Name_label')}</label>
                     <input
                         type="text"
                         id="mother-name"
                         name="mother-name"
-                        placeholder="Mother’s Name"
+                        placeholder={t('Mother_Name_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="mother-qualification">Educational Qualification *</label>
+                    <label htmlFor="mother-qualification">{t('Mother_Qualification_label')}</label>
                     <input
                         type="text"
                         id="mother-qualification"
                         name="mother-qualification"
-                        placeholder="Educational Qualification"
+                        placeholder={t('Mother_Qualification_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="mother-mobile">Mobile Number *</label>
+                    <label htmlFor="mother-mobile">{t('Mother_Mobile_label')}</label>
                     <input
                         type="tel"
                         id="mother-mobile"
                         name="mother-mobile"
-                        placeholder="Mobile Number"
+                        placeholder={t('Mother_Mobile_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="mother-occupation">Occupation *</label>
+                    <label htmlFor="mother-occupation">{t('Mother_Occupation_label')}</label>
                     <input
                         type="text"
                         id="mother-occupation"
                         name="mother-occupation"
-                        placeholder="Occupation"
+                        placeholder={t('Mother_Occupation_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="mother-income">Annual Income *</label>
+                    <label htmlFor="mother-income">{t('Mother_Income_label')}</label>
                     <input
                         type="text"
                         id="mother-income"
                         name="mother-income"
-                        placeholder="Annual Income"
+                        placeholder={t('Mother_Income_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="current-school">Name of the current school *</label>
+                    <label htmlFor="current-school">{t('Current_School_label')}</label>
                     <input
                         type="text"
                         id="current-school"
                         name="current-school"
-                        placeholder="Name of the current school"
+                        placeholder={t('Current_School_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="board">Board of Education *</label>
+                    <label htmlFor="board">{t('Board_label')}</label>
                     <select
                         id="board"
                         name="board"
                         className="w-full"
                         required
                     >
-                        <option value="">Select Board</option>
+                        <option value="">{t('Select_Board')}</option>
                         <option value="CBSE">CBSE</option>
                         <option value="ICSE">ICSE</option>
                         <option value="State Board">State Board</option>
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="email">Email id for communication *</label>
+                    <label htmlFor="email">{t('Email_label')}</label>
                     <input
                         type="email"
                         id="email"
                         name="email"
-                        placeholder="Email id for communication"
+                        placeholder={t('Email_placeholder')}
                         className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="address">Residential address for communication *</label>
+                    <label htmlFor="address">{t('Address_label')}</label>
                     <textarea
                         id="address"
                         name="address"
-                        placeholder="Residential address for communication"
+                        placeholder={t('Address_placeholder')}
                         rows="4"
                         className="w-full"
                         required
                     ></textarea>
                 </div>
                 <div>
-                    <label>Details about siblings studying in this school *</label>
+                    <label>{t('Siblings_label')}</label>
                     <div>
                         <input type="radio" id="siblings-yes" name="siblings" value="Yes" required />
-                        <label htmlFor="siblings-yes">Yes</label>
+                        <label htmlFor="siblings-yes">{t('Yes')}</label>
 
                         <input type="radio" id="siblings-no" name="siblings" value="No" />
-                        <label htmlFor="siblings-no">No</label>
+                        <label htmlFor="siblings-no">{t('No')}</label>
                     </div>
                 </div>
                 <div>
-                    <label>Upload recent passport photograph of the student</label>
+                    <label>{t('Upload_Photo_label')}</label>
                     <input
                         type="file"
                         id="photo"
@@ -285,12 +290,12 @@ const AdmissionPage = () => {
                     />
                 </div>
                 <div>
-                    <label>Please enter the code you see in the image: *</label>
+                    <label>{t('Captcha_label')}</label>
                     <input
                         type="text"
                         id="captcha"
                         name="captcha"
-                        placeholder="Enter code"
+                        placeholder={t('Captcha_placeholder')}
                         className="w-full"
                         required
                     />
@@ -300,7 +305,7 @@ const AdmissionPage = () => {
                         type="submit"
                         className="py-2 px-6 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                     >
-                        Submit
+                        {t('Submit')}
                     </button>
                 </div>
             </form>
