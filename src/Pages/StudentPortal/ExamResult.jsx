@@ -19,7 +19,7 @@ const ExamResult = () => {
                     <CardContent className="flex justify-center items-center gap-2">
                         <div className="text-[1.5rem] lg:text-[3rem] lg:flex lg:flex-col lg:gap-5 lg:items-center font-bold text-[#7776B3]">
                             <div>
-                                <img src={userimage} alt="student Image" className='h-[200px] lg:mt-5 rounded-md' />
+                                <img src={userimage} alt="student_Image" className='h-[200px] lg:mt-5 rounded-md' />
                             </div>
                             <div>
                                 <div className=''>

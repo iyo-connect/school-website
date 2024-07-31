@@ -3,12 +3,7 @@ import { Separator } from "../../components/ui/separator"
 
 import {
     Command,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
-    CommandSeparator,
+    CommandInput
 } from "../../components/ui/command"
 import {
     Sheet,

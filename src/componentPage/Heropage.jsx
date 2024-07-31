@@ -26,8 +26,8 @@ const HeroPage = () => {
   return (
     <div>
       <div className='relative'>
-        <img src={hero_image} alt="Hero Image" className="w-full h-[300px] md:h-auto object-cover lg:block md:hidden" />
-        <img src={hero_image1} alt="Hero Image" className="lg:hidden" />
+        <img src={hero_image} alt="Hero_Image" className="w-full h-[300px] md:h-auto object-cover lg:block md:hidden" />
+        <img src={hero_image1} alt="Hero_Image" className="lg:hidden" />
         <div className='absolute top-[20rem] lg:top-[11rem] left-10 w-1/2 text-white text-[2.5rem] font-bold'>
           <h2>{t('Hero_coverText')}</h2>
           <Button className="p-5 bg-blue-900 hover:bg-blue-800">

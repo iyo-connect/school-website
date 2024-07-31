@@ -23,8 +23,8 @@ export default function Academics() {
           <Link to="/admission" className="btn btn-secondary">Admission</Link>
         </div>
         <div className="image-gallery grid grid-cols-1 md:grid-cols-2 gap-4">
-          <img src={image1} alt="Campus Image 1" className="w-full h-auto" />
-          <img src={image2} alt="Campus Image 2" className="w-full h-auto" />
+          <img src={image1} alt="Campus_Image-1" className="w-full h-auto" />
+          <img src={image2} alt="Campus_Image-2" className="w-full h-auto" />
         </div>
       </div>
     </div>
