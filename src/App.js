@@ -11,7 +11,6 @@ import Footer from './componentPage/Footer';
 import Navbar from './componentPage/NavigationMenu';
 import Heropage from './componentPage/Heropage';
 import StudentPortal from './Pages/StudentPortal/StudentPortal';
-import Dummy from './Pages/Dummy';
 
 function App() {
   const location = useLocation();
@@ -22,7 +21,7 @@ function App() {
     
       {!isAuthRoute && <Navbar />}
       <Routes>
-        <Route path="/" element={<Heropage/>} />
+        <Route path="/" element={<Heropage />}/>
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/academics" element={<Academics />} />
