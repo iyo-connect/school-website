@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Build, Deploy, and Publish
 
 on:
   push:
@@ -10,33 +10,66 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  packages: write # Permissions to publish to GitHub Packages
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Source
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Ensures the full repository history is fetched
+          fetch-depth: 0 # Ensure full history is fetched
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Ensure this matches your local Node.js version
+          node-version: '20' # Set this to the Node.js version used locally
 
       - name: Install Dependencies
-        run: npm ci # Clean install of dependencies
+        run: npm ci # Install dependencies from package-lock.json
 
       - name: Build Project
-        run: npm run build # Build your project, ensure the build script is correct
+        run: npm run build # Build the React project
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # Use GitHub token for authentication
-          publish_dir: ./build # Directory where the build output is located
-          publish_branch: gh-pages # Branch where the site will be published
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Default token provided by GitHub
+          publish_dir: ./build # Directory to publish
+          publish_branch: gh-pages # Branch to deploy to
 
+  publish-gpr:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Ensure this matches the version used in your project
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Publish Package to GitHub Packages
+        run: npm publish --access public # Adjust the command based on your package configuration
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub token for authentication
