@@ -1,9 +1,13 @@
 name: Deploy to GitHub Pages
 
+# Trigger the workflow on pushes to the main branch or pull requests targeting main
 on:
   push:
     branches:
-      - BilalRifay-patch-2
+      - main # or specify the branch you work on
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -14,46 +18,39 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js 20
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 20.x # Specify the Node.js version
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci # npm ci is faster and more predictable in CI environments
 
       - name: Build project
-        run: npm run build
+        run: npm run build # This command creates a build directory for deployment
 
-      - name: Upload artifact for deployment
-        uses: actions/upload-artifact@v3
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v2
         with:
           name: production-files
-          path: ./build
+          path: build # Path to the build directory
 
   deploy:
-    name: Deploy Project
+    name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     needs: build
-    if: github.ref == 'refs/heads/BilalRifay-patch-2'
 
     steps:
-      - name: Checkout Target Branch
-        uses: actions/checkout@v2
-        with:
-          ref: BilalRifay-patch-2
-
-      - name: Download artifact
-        uses: actions/download-artifact@v3
+      - name: Download build artifact
+        uses: actions/download-artifact@v2
         with:
           name: production-files
-          path: ./build
+          path: build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
-          publish_branch: gh-pages -d build
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Use the default GitHub Actions token
+          publish_dir: ./build # Directory to publish
 
 
