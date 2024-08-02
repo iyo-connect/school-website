@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - BilalRifay-patch-2
 
 jobs:
   build:
@@ -35,13 +35,13 @@ jobs:
     name: Deploy Project
     runs-on: ubuntu-latest
     needs: build
-    if: github.ref == 'refs/heads/main'  
+    if: github.ref == 'refs/heads/BilalRifay-patch-2'
 
     steps:
       - name: Checkout Target Branch
         uses: actions/checkout@v2
         with:
-          ref: main
+          ref: BilalRifay-patch-2
 
       - name: Download artifact
         uses: actions/download-artifact@v3
@@ -55,4 +55,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
           publish_branch: gh-pages
-          
+
+
