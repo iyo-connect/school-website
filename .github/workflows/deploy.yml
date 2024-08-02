@@ -8,75 +8,79 @@ on:
     branches:
       - main
 
-
-
 jobs:
-
   build:
-
-    name: build-Project
-
+    name: Build Project
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
-    - name: Checkout Code
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 20
 
-      uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
 
-    - name: install node 20
+      - name: Build project
+        run: npm run build
 
-      uses: actions/setup-node@v1
-        
-      with: 
+      - name: Upload artifact for deployment
+        uses: actions/upload-artifact@v3
+        with:
+          name: production-files
+          path: ./build
 
-          node-version: 20.x
+      - name: Notify Slack on Success
+        if: ${{ success() }}
+        uses: slackapi/slack-github-action@v1
+        with:
+          channel: '#your-channel'
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          text: 'Build was successful! :tada:'
 
-    - name: npm install dependencies
-    
-      run: npm i
-
-    - name: Build project
-
-      run: npm run build
-
-    - name: upload artifact in oroder to deploy
-
-      uses: actions/upload-artifact@v2
-
-      with:
-
-        name: production-files
-
-        path: ./build
+      - name: Notify Slack on Failure
+        if: ${{ failure() }}
+        uses: slackapi/slack-github-action@v1
+        with:
+          channel: '#your-channel'
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          text: 'Build failed. :x:'
 
   deploy:
-
-    name: deploy-project
-    
+    name: Deploy Project
     runs-on: ubuntu-latest
-
     needs: build
 
     steps:
-      
-      - name: Dowload artifact
-
-        uses: actions/download-artifact@v2
-
+      - name: Download artifact
+        uses: actions/download-artifact@v3
         with:
-
           name: production-files
-
           path: ./build
 
-      - name: deploying into gh pages
-
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
-
         with:
-
-          github_token: ${{secrets.ACTIONS_DEPLOY_ACCESS_TOKEN}}
-
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
+
+      - name: Notify Slack on Deployment Success
+        if: ${{ success() }}
+        uses: slackapi/slack-github-action@v1
+        with:
+          channel: '#your-channel'
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          text: 'Deployment to GitHub Pages was successful! :rocket:'
+
+      - name: Notify Slack on Deployment Failure
+        if: ${{ failure() }}
+        uses: slackapi/slack-github-action@v1
+        with:
+          channel: '#your-channel'
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          text: 'Deployment to GitHub Pages failed. :warning:'
 
