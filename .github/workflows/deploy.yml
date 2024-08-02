@@ -1,82 +1,55 @@
 name: Deploy to GitHub Pages
 
-on: 
+# Trigger the workflow on pushes to the main branch or pull requests targeting main
+on:
   push:
     branches:
-      - main
+      - main # or specify the branch you work on
   pull_request:
     branches:
       - main
 
-
-
 jobs:
-
   build:
-
-    name: build-Project
-
+    name: Build Project
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
-    - name: Checkout Code
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x # Specify the Node.js version
 
-      uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm ci # npm ci is faster and more predictable in CI environments
 
-    - name: install node 20
+      - name: Build project
+        run: npm run build # This command creates a build directory for deployment
 
-      uses: actions/setup-node@v1
-        
-      with: 
-
-          node-version: 20.x
-
-    - name: npm install dependencies
-    
-      run: npm i
-
-    - name: Build project
-
-      run: npm run build
-
-    - name: upload artifact in oroder to deploy
-
-      uses: actions/upload-artifact@v2
-
-      with:
-
-        name: production-files
-
-        path: ./build
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: production-files
+          path: build # Path to the build directory
 
   deploy:
-
-    name: deploy-project
-    
+    name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
-
     needs: build
 
     steps:
-      
-      - name: Dowload artifact
-
+      - name: Download build artifact
         uses: actions/download-artifact@v2
-
         with:
-
           name: production-files
+          path: build
 
-          path: ./build
-
-      - name: deploying into gh pages
-
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
-
         with:
-
-          github_token: ${{secrets.ACTIONS_DEPLOY_ACCESS_TOKEN}}
-
-          publish_dir: ./build
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Use the default GitHub Actions token
+          publish_dir: ./build # Directory to publish
 
