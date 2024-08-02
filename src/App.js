@@ -1,5 +1,5 @@
 import React from 'react';
-import {Routes, Route, useLocation ,HashRouter } from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Dashboard from './Pages/admin/Dashboard';
 import ContactPage from './Pages/ContactPage';
 import AboutPage from './Pages/AboutUs';
@@ -14,14 +14,14 @@ import StudentPortal from './Pages/StudentPortal/StudentPortal';
 
 function App() {
   const location = useLocation();
-  const isAuthRoute = location.pathname.startsWith('/admin') || location.pathname.startsWith('/student');
+  const isAuthRoute = location.pathname.startsWith('/admin') || location.pathname.startsWith('/student'); 
 
   return (
     <>
-    
-      {!isAuthRoute && <Navbar />}
+    <Router>
+      {!isAuthRoute && <Navbar />} 
       <Routes>
-        <Route path="/" element={<Heropage />}/>
+        <Route path="/" element={<Heropage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/academics" element={<Academics />} />
@@ -30,16 +30,11 @@ function App() {
         <Route path="/admin/*" element={<Dashboard />} />
         <Route path="/student/*" element={<StudentPortal />} />
       </Routes>
-      {!isAuthRoute && <Footer />}
-     
+      {!isAuthRoute && <Footer />} 
+
+      </Router>
     </>
   );
 }
 
-const WrappedApp = () => (
-  <HashRouter>
-    <App />
-  </HashRouter>
-);
-
-export default WrappedApp;
+export default App;
