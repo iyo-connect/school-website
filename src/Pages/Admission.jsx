@@ -22,12 +22,12 @@ const extractFormData = () => {
 const generatePDF = async () => {
     const pdfDoc = await PDFDocument.create();
     const page = pdfDoc.addPage([600, 800]);
-    const { width, height } = page.getSize();
+    const {width, height } = page.getSize();
     const fontSize = 12;
     const margin = 50;
     const imagePlaceholderWidth = 99.05; // 35mm in points
     const imagePlaceholderHeight = 127.65; // 45mm in points
-
+    let image_width = width;
     // Extract form data
     const formData = extractFormData();
     
@@ -37,7 +37,7 @@ const generatePDF = async () => {
     // Add a placeholder for the image
     page.drawRectangle({
         x: margin,
-        y: height - margin - imagePlaceholderHeight,
+        y: height - margin - imagePlaceholderHeight || image_width ,
         width: imagePlaceholderWidth,
         height: imagePlaceholderHeight,
         borderColor: rgb(0, 0, 0),
