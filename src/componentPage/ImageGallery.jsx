@@ -35,7 +35,7 @@ const ImageGallery = () => {
           <img
             src={images[currentIndex].src}
             alt={images[currentIndex].alt}
-            className="w-full h-full object-cover rounded-lg shadow-lg transition-transform duration-500"
+            className="w-full h-full object-cover rounded-[2rem] shadow-lg transition-transform duration-500"
           />
           <div className="absolute bottom-0 left-0 bg-black bg-opacity-60 text-white text-lg font-medium p-2 rounded-b-lg w-full text-center">
             {images[currentIndex].headline}

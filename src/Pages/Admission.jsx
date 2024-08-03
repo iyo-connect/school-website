@@ -1,19 +1,89 @@
+import { Download } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { PDFDocument, rgb } from 'pdf-lib';
 
 const AdmissionPage = () => {
-    const { t } = useTranslation();
+    const { t , i18n } = useTranslation();
+
+    const font_size = (i18n.language === 'ml' || i18n.language === 'ta') ? 'lg:text-[14px] text-[2rem]' : 'lg:text-[17px] text-[2.5rem]';
 
     const handleSubmit = (event) => {
         event.preventDefault();
     };
+  // Function to extract values from the form
+const extractFormData = () => {
+    const form = document.getElementById('admission-form');
+    const formData = new FormData(form);
+    const values = Object.fromEntries(formData.entries());
+    return values;
+};
 
+const generatePDF = async () => {
+    const pdfDoc = await PDFDocument.create();
+    const page = pdfDoc.addPage([600, 800]);
+    const { width, height } = page.getSize();
+    const fontSize = 12;
+    const margin = 50;
+    const imagePlaceholderWidth = 99.05; // 35mm in points
+    const imagePlaceholderHeight = 127.65; // 45mm in points
+
+    // Extract form data
+    const formData = extractFormData();
+    
+    // Define the starting y position
+    let yPosition = height - margin;
+
+    // Add a placeholder for the image
+    page.drawRectangle({
+        x: margin,
+        y: height - margin - imagePlaceholderHeight,
+        width: imagePlaceholderWidth,
+        height: imagePlaceholderHeight,
+        borderColor: rgb(0, 0, 0),
+        borderWidth: 2,
+        color: rgb(0.9, 0.9, 0.9), // Light gray color for placeholder
+    });
+
+    page.drawText('Image Placeholder', {
+        x: margin + 5,
+        y: height - margin - imagePlaceholderHeight + 5,
+        size: fontSize,
+        color: rgb(0, 0, 0),
+    });
+
+    // Add text to the PDF for each form field
+    yPosition -= imagePlaceholderHeight + margin; // Adjust starting y position after the placeholder
+
+    for (const [key, value] of Object.entries(formData)) {
+        page.drawText(`${key}: ${value}`, {
+            x: margin,
+            y: yPosition,
+            size: fontSize,
+            color: rgb(0, 0, 0),
+        });
+        yPosition -= fontSize * 1.5; // Adjust spacing between lines
+    }
+
+    // Save the PDF
+    const pdfBytes = await pdfDoc.save();
+
+    // Create a blob and trigger a download
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'admission-form.pdf';
+    link.click();
+};
+
+
+    
     return (
-        <div className="max-w-4xl mx-auto px-4 py-8 lg:text-[1rem] md:text-[3rem]">
+        <div className={`max-w-4xl mx-auto px-4 py-8 ${font_size}`}>
             <h1 className="lg:text-[1.5rem] md:text-[4rem] font-semibold text-center mb-8">
                 {t('Admission_header')}
             </h1>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form id="admission-form" onSubmit={handleSubmit} className="space-y-4">
                 <div>
                     <label htmlFor="grade">{t('Grade_label')}</label>
                     <select
@@ -289,23 +359,14 @@ const AdmissionPage = () => {
                         className="w-full"
                     />
                 </div>
-                <div>
-                    <label>{t('Captcha_label')}</label>
-                    <input
-                        type="text"
-                        id="captcha"
-                        name="captcha"
-                        placeholder={t('Captcha_placeholder')}
-                        className="w-full"
-                        required
-                    />
-                </div>
+                
                 <div className="text-center">
                     <button
-                        type="submit"
+                        type="button"
+                        onClick={generatePDF}
                         className="py-2 px-6 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                     >
-                        {t('Submit')}
+                        Download Admission From &nbsp;&nbsp; <Download className='inline-block'/>
                     </button>
                 </div>
             </form>
