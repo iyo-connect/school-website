@@ -1,14 +1,13 @@
 name: Deploy to GitHub Pages
 
-# Trigger the workflow on push to main and on manual dispatch
 on:
   push:
     branches:
-      - main # or specify the branch you work on
+      - main
   pull_request:
     branches:
       - main
-  workflow_dispatch: # Enables manual trigger from the GitHub UI
+  workflow_dispatch:  # Enables manual trigger from the GitHub UI
 
 jobs:
   build:
@@ -22,19 +21,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x # Specify the Node.js version
+          node-version: 20.x
 
       - name: Install dependencies
-        run: npm ci # npm ci is faster and more predictable in CI environments
+        run: npm ci
 
       - name: Build project
-        run: npm run build # This command creates a build directory for deployment
+        run: npm run build
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v2
         with:
           name: production-files
-          path: build # Path to the build directory
+          path: build
 
   deploy:
     name: Deploy to GitHub Pages
@@ -51,5 +50,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # Use the default GitHub Actions token
-          publish_dir: ./build # Directory to publish
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
