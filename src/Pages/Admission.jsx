@@ -27,7 +27,7 @@ const generatePDF = async () => {
     const margin = 50;
     const imagePlaceholderWidth = 99.05; // 35mm in points
     const imagePlaceholderHeight = 127.65; // 45mm in points
-
+    let imageWidth = width;
     // Extract form data
     const formData = extractFormData();
     
