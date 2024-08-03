@@ -21,15 +21,16 @@ const items = [
 ];
 
 const HeroPage = () => {
-  const { t } = useTranslation();
+  const { t , i18n } = useTranslation();
 
+ const font_size = (i18n.language === 'ml' || i18n.language === 'ta') ? 'text-[1.5rem]' : 'text-[2rem]';
   return (
     <div>
-      <div className='relative'>
+      <div className={`relative ${font_size}`}>
         <img src={hero_image} alt="Hero_Image" className="w-full h-[300px] md:h-auto object-cover lg:block md:hidden" />
         <img src={hero_image1} alt="Hero_Image" className="lg:hidden" />
         <div className='absolute top-[20rem] lg:top-[11rem] left-10 w-1/2 text-white text-[2.5rem] font-bold'>
-          <h2>{t('Hero_coverText')}</h2>
+          <h2 className={`${font_size} `}>{t('Hero_coverText')}</h2>
           <Button className="p-5 bg-blue-900 hover:bg-blue-800">
             {t('Hero_apply_now')}
           </Button>
@@ -37,13 +38,13 @@ const HeroPage = () => {
       </div>
       <div className="container mx-auto py-8 px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <img src={cover1} alt="Bharathi School" className="w-full h-auto rounded-lg shadow-md" />
+          <img src={cover1} alt="Bharathi School" className="w-full h-auto rounded-[5rem] shadow-md" />
           <div>
-            <h2 className="text-blue-800 text-2xl font-bold mb-4">{t('Hero_about_title')}</h2>
-            <p className="text-gray-700 mb-4">
+            <h2 className="text-blue-800 text-2xl font-bold mb-4 animate-slideInLeft duration-1000 delay-200">{t('Hero_about_title')}</h2>
+            <p className="text-gray-700 mb-4 animate-slideInLeft duration-1000 delay-200">
               {t('Hero_about_description')}
             </p>
-            <Button className="bg-blue-800 text-white hover:bg-blue-900">{t('Hero_find_out_more')}</Button>
+            <Button className="bg-blue-800 text-white hover:bg-blue-900 animate-slideInLeft duration-1000 delay-200">{t('Hero_find_out_more')}</Button>
           </div>
         </div>
 
@@ -55,11 +56,11 @@ const HeroPage = () => {
             </p>
             <Button className="bg-blue-800 text-white hover:bg-blue-900">{t('Hero_find_out_more')}</Button>
           </div>
-          <img src={cover2} alt="Why Bharathi School" className="w-full h-auto rounded-lg shadow-md" />
+          <img src={cover2} alt="Why Bharathi School" className="w-full h-auto rounded-[5rem] shadow-md" />
         </div>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <img src={cover3} alt="Cocurricular Activities" className="w-full h-auto rounded-lg shadow-md" />
+          <img src={cover3} alt="Cocurricular Activities" className="w-full h-auto rounded-[5rem] shadow-md" />
           <div>
             <h2 className="text-blue-800 text-2xl font-bold mb-4">{t('Hero_cocurricular_title')}</h2>
             <p className="text-gray-700 mb-4">
@@ -90,7 +91,7 @@ const HeroPage = () => {
                 <img
                   src={item.src}
                   alt={item.alt}
-                  className="w-full h-full object-cover rounded-lg shadow-lg transition-transform duration-300"
+                  className="w-full h-full object-cover rounded-[3rem] shadow-lg transition-transform duration-300"
                 />
                 <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-40 text-white text-lg font-semibold p-2 text-center rounded-b-lg">
                   {t(item.title)}

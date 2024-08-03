@@ -1,7 +1,7 @@
 import React from 'react';
-import {BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation   } from 'react-router-dom';
 import Dashboard from './Pages/admin/Dashboard';
-import ContactPage from './Pages/ContactPage';
+import ContactPage from './Pages/ContactPage'
 import AboutPage from './Pages/AboutUs';
 import './index.css';
 import Academics from './Pages/Academic';
@@ -18,7 +18,6 @@ function App() {
 
   return (
     <>
-    <Router>
       {!isAuthRoute && <Navbar />} 
       <Routes>
         <Route path="/" element={<Heropage />} />
@@ -29,12 +28,20 @@ function App() {
         <Route path="/curriculum" element={<CurriculumPage />} />
         <Route path="/admin/*" element={<Dashboard />} />
         <Route path="/student/*" element={<StudentPortal />} />
+        <Route path="*" element={<Heropage />} />
       </Routes>
       {!isAuthRoute && <Footer />} 
-
-      </Router>
     </>
   );
 }
 
-export default App;
+function WrappedApp() {
+  return (
+    <Router basename='/school-website'>
+      <App />
+    </Router>
+  );
+}
+
+export default WrappedApp;
+
